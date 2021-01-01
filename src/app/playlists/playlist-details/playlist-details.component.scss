@@ -1,0 +1,31 @@
+.playlist-details-wrapper {
+  font-size: 14px;
+  user-select: none;
+  .title-text {
+    color: rgb(39, 48, 87);
+    font-size: 2em;
+    font-weight: 600;
+  }
+  .playlist-header {
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      margin-left: 16px;
+      i {
+        font-size: 1.5em;
+        cursor: pointer;
+        transition: 0.2s;
+        padding-right: 10px;
+      }
+      &:hover {
+        color: #c0e218;
+      }
+    }
+  }
+  .playlist-viewport {
+    width: 100%;
+    min-height: 250px;
+  }
+}

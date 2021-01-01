@@ -1,0 +1,32 @@
+.create-edit-playlist-wrapper {
+  padding: 10px;
+  .header {
+    color: rgb(39, 48, 87);
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .body {
+    margin-bottom: 20px;
+    input {
+      height: 35px;
+      padding: 10px 20px;
+      outline: none;
+      border: 0;
+      border-radius: 25px;
+      border: 2px solid #c0e218;
+      font-size: 1.5em;
+      min-width: 250px;
+    }
+  }
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    button#btn-save {
+      &:not(disabled) {
+        background-color: #c0e218;
+      }
+    }
+  }
+}

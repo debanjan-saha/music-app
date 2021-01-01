@@ -1,0 +1,44 @@
+.content-wrapper {
+  padding: 25px;
+  font-size: 14px;
+  display: flex;
+  align-items: flex-start;
+  .app-content {
+    flex: 1;
+    nav {
+      border-radius: 15px;
+      margin-bottom: 35px;
+      background-color: rgb(255, 255, 255);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      .logo-wrapper {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        .logo {
+          width: 40px;
+          height: 40px;
+          background-image: url(../assets/logo.png);
+          background-size: cover;
+          margin-right: 12px;
+        }
+        .app-title {
+          color: rgb(39, 48, 87);
+          font-size: 1.6em;
+          font-weight: bold;
+        }
+      }
+      .nav-item {
+        margin-right: 20px;
+        font-size: 1.2em;
+        font-weight: 600;
+        color: rgb(39, 48, 87);
+        cursor: pointer;
+        &.active {
+          color: #c0e218;
+        }
+      }
+    }
+  }
+}

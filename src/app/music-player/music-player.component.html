@@ -1,0 +1,15 @@
+<div class="music-player" [ngClass]="{ 'playing': isPlaying }">
+  <div class="header">
+    <img class="song-thumbnail" src="https://picsum.photos/180/100?random={{song.id}}">
+    <div class="song-details">
+      <div class="song-name" [matTooltip]="song.title">{{ song.title }}</div>
+      <div class="song-artist">{{ song.artist }}</div>
+    </div>
+  </div>
+  <div class="media-buttons">
+    <i class="material-icons" matTooltip="Previous">skip_previous</i>
+    <i class="material-icons" matTooltip="Play" *ngIf="!isPlaying" (click)="isPlaying = !isPlaying">play_arrow</i>
+    <i class="material-icons" matTooltip="Pause" *ngIf="isPlaying" (click)="isPlaying = !isPlaying">pause</i>
+    <i class="material-icons"matTooltip="Next" >skip_next</i>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="playlists-wrapper">
+  <div class="playlists-header">
+    <span class="title-text">Playlists ({{ playlists?.length}})</span>
+    <i class="material-icons" matTooltip="Create new Playlist" (click)="addNewPlaylist()">add</i>
+  </div>
+  <cdk-virtual-scroll-viewport [itemSize]="displayCount" [ngStyle]="{ height: height }" class="playlists-viewport">
+    <div class="playlist-tile" [routerLink]="['/', 'playlists', playlist.id ]"
+      *cdkVirtualFor="let playlist of playlists; let index = index;">
+      <div class="playlist-details">
+        <div class="title">{{ playlist.title }}</div>
+        <div class="last-modified-date">Last Modified on {{ playlist.lastModifiedDate | date : 'medium' }}</div>
+      </div>
+      <div class="action-buttons">
+        <i id="icon-rename" class="material-icons" matTooltip="Rename Playlist"
+          (click)="editPlaylist(playlist); $event.stopPropagation();">create</i>
+        <i id="icon-delete" class="material-icons" matTooltip="Delete Playlist"
+          (click)="deletePlaylist(playlist.id); $event.stopPropagation();">clear</i>
+      </div>
+    </div>
+  </cdk-virtual-scroll-viewport>
+
+</div>

@@ -1,0 +1,18 @@
+<div class="playlist-details-wrapper">
+  <div class="playlist-header">
+    <div class="text-wrapper">
+      <span class="title-text">{{ playlist?.title}}</span>
+      <div class="breadcrumbs">
+        <a [routerLink]="['/', 'playlists']">Go back to Playlists</a>
+      </div>
+    </div>
+    <div class="action-buttons">
+      <button mat-flat-button (click)="shuffleSongs()"><i class="material-icons"
+          matTooltip="Shuffle">shuffle</i>Shuffle</button>
+      <button mat-flat-button (click)="addSongs()"><i class="material-icons" matTooltip="Add Songs">add</i>Add
+        Songs</button>
+    </div>
+  </div>
+  <app-songs [songs]="songs" [showDeleteIcon]="true" height="500px" (deleteClicked)="removeSongFromPlaylist($event)">
+  </app-songs>
+</div>

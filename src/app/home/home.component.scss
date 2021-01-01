@@ -1,0 +1,16 @@
+.home-wrapper {
+  app-featured {
+    display: block;
+    margin-bottom: 45px;
+  }
+  .content-wrapper {
+    display: flex;
+    app-songs {
+      flex: 1;
+      margin-right: 25px;
+    }
+    app-music-player {
+      flex: 1;
+    }
+  }
+}

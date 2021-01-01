@@ -1,0 +1,74 @@
+.playlists-wrapper {
+  .playlists-header {
+    color: rgb(39, 48, 87);
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    i {
+      font-size: 1.5em;
+      cursor: pointer;
+      transition: 0.2s;
+      padding-right: 10px;
+      &:hover {
+        color: #c0e218;
+        transition: 0.2s;
+      }
+    }
+  }
+  .playlists-viewport {
+    width: 100%;
+    min-height: 250px;
+  }
+  .playlist-tile {
+    height: 40px;
+    margin: 20px 0;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    user-select: none;
+    transition: 0.2s;
+    cursor: pointer;
+    &:hover {
+      background-color: white;
+      box-shadow: 0 0 20px 10px rgba(0,0,0,0.02);
+      transition: 0.2s;
+      .action-buttons {
+        visibility: visible;
+        cursor: pointer;
+      }
+    }
+    .action-buttons {
+      visibility: hidden;
+      color: rgb(39, 48, 87);
+      i {
+        margin-left: 10px;
+      }
+      &:hover {
+        i#icon-rename {
+          color: #ff9f1c;
+        }
+        i#icon-delete {
+          color: #e71d36;
+        }
+      }
+    }
+    .playlist-details {
+      flex: 1;
+    }
+    .title {
+      color: rgb(39, 48, 87);
+      font-size: 1.2em;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+    .created-date {
+      color: #a1a1a1;
+      text-transform: capitalize;
+      font-size: 1.03em;
+    }
+  }
+}

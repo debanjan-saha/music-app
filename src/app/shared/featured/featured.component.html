@@ -1,0 +1,10 @@
+<div class="featured-items">
+  <div class="featured-title">Featured {{ entityName }}</div>
+  <div class="featured-content">
+    <div class="item floating-panel" *ngFor="let item of items?.slice(0, 6); let index = index;">
+      <img class="item-thumbnail" src="https://picsum.photos/170?random={{index}}">
+      <div class="item-title">{{ item.title }}</div>
+      <div class="item-subtitle">{{ item.subtitle }}</div>
+    </div>
+  </div>
+</div>

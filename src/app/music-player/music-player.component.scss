@@ -1,0 +1,67 @@
+@keyframes pulse {
+  0% {
+    background-color: #c0e218;
+  }
+  50% {
+    background-color: #f0ffa7;
+  }
+  100% {
+    background-color: #c0e218;
+  }
+}
+
+.music-player {
+  background-color: #c0e218;
+  width: 100%;
+  border-radius: 15px;
+  user-select: none;
+  &.playing {
+    animation: pulse infinite 3.5s;
+  }
+  .header {
+    .song-thumbnail {
+      width: 100%;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .song-details {
+      margin-top: 10px;
+      text-align: center;
+      color: rgb(39, 48, 87);
+      font-weight: 600;
+      .song-name {
+        font-size: 1.5em;
+        padding: 8px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .song-artist {
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .media-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      font-size: 2.3em;
+      border-radius: 15px;
+      padding: 7px;
+      margin: 15px 8px;
+      color: rgb(39, 48, 87);
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      &:hover {
+        border: 1px solid white;
+        color: white;
+        transition: 0.2s;
+      }
+    }
+  }
+}

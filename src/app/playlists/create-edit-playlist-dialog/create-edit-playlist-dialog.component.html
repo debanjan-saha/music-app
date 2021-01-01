@@ -1,0 +1,10 @@
+<div class="create-edit-playlist-wrapper">
+  <div class="header" mat-dialog-title>{{ headerTitle }}</div>
+  <div class="body" mat-dialog-content>
+    <input type="text" [(ngModel)]="playlistName">
+  </div>
+  <div class="footer" mat-dialog-actions>
+    <button id="btn-cancel" mat-button (click)="onDismiss()">Cancel</button>
+    <button id="btn-save" mat-flat-button (click)="onSave()">Save</button>
+  </div>
+</div>

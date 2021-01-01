@@ -1,0 +1,6 @@
+<div class="add-songs-dialog-wrapper">
+  <div class="body" mat-dialog-content>
+    <app-songs [showHeader]="true" height="480px" [displayCount]="6" [isEditMode]="true" [showPlayIcon]="false"
+      (addClicked)="addSongToPlaylist($event)"></app-songs>
+  </div>
+</div>

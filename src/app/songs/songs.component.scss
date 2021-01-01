@@ -1,0 +1,100 @@
+.songs-wrapper {
+  .songs-header {
+    color: rgb(39, 48, 87);
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .search-wrapper {
+      display: flex;
+      align-items: center;
+      input {
+        border: 0;
+        padding: 10px;
+        border-radius: 30px;
+        border: 2px solid #c0e218;
+        background: transparent;
+        width: 300px;
+        padding-right: 40px;
+      }
+      i {
+        user-select: none;
+        position: relative;
+        right: 35px;
+      }
+    }
+  }
+  .songs-viewport {
+    width: 100%;
+    min-height: 250px;
+  }
+  .song-tile {
+    height: 50px;
+    margin: 15px 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    user-select: none;
+    transition: 0.2s;
+    &:hover:not(.edit) {
+      background-color: white;
+      box-shadow: 0 0 20px 10px rgba(0,0,0,0.02);
+      transition: 0.2s;
+    }
+    .song-details {
+      flex: 1;
+    }
+    .action-buttons {
+      padding-right: 10px;
+      i {
+        font-size: 2em;
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover {
+          color: #c0e218;
+          transition: 0.2s;
+        }
+      }
+    }
+    img {
+      width: 40px;
+      height: 40px;
+      margin-right: 20px;
+      border-radius: 15px;
+      background-size: cover;
+    }
+    .title {
+      color: rgb(39, 48, 87);
+      font-size: 1.2em;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+    .artist {
+      color: #a1a1a1;
+      text-transform: capitalize;
+      font-size: 1.03em;
+    }
+    &.edit {
+      height: 40px;
+      padding: 5px;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+      .title {
+        color: rgb(39, 48, 87);
+        font-size: 1em;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+      .artist {
+        color: #a1a1a1;
+        text-transform: capitalize;
+        font-size: 0.9em;
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<div class="content-wrapper">
+  <app-sidebar [user]="user"></app-sidebar>
+  <div class="app-content">
+    <nav class="floating-panel">
+      <div class="logo-wrapper">
+        <div class="logo"></div>
+        <div class="app-title">VBI Music</div>
+      </div>
+      <div class="nav-item" [routerLink]="['home']" routerLinkActive="active">Home</div>
+      <div class="nav-item" [routerLink]="['songs']" routerLinkActive="active">Songs</div>
+      <div class="nav-item" [routerLink]="['playlists']" routerLinkActive="active">Playlists</div>
+    </nav>
+    <router-outlet></router-outlet>
+  </div>
+</div>
