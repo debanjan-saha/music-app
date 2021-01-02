@@ -1,6 +1,5 @@
 .sidebar-content {
-  width: 250px;
-  height: 685px;
+  height: 92vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -20,8 +19,8 @@
         border-radius: 50%;
       }
       .online-status {
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
         border-radius: 50%;
         background-color: rgb(44, 242, 112);
         position: absolute;
@@ -33,12 +32,12 @@
       color: rgb(39, 48, 87);
       margin-top: 25px;
       margin-bottom: 8px;
-      font-size: 1.8em;
+      font-size: 1.5em;
       font-weight: 600;
     }
     .user-email {
       color: #a1a1a1;
-      font-size: 0.9em;
+      font-size: 0.8em;
     }
   }
 }

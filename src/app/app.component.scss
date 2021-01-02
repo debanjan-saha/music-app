@@ -1,6 +1,6 @@
 .content-wrapper {
   padding: 25px;
-  font-size: 14px;
+  font-size: 13px;
   display: flex;
   align-items: flex-start;
   .app-content {
@@ -9,7 +9,7 @@
       border-radius: 15px;
       margin-bottom: 35px;
       background-color: rgb(255, 255, 255);
-      padding: 20px;
+      padding: 10px;
       display: flex;
       align-items: center;
       user-select: none;
@@ -45,4 +45,15 @@
       }
     }
   }
+}
+
+.app-sidebar {
+  display: inline-block;
+  width: 20%;
+  overflow: hidden;
+}
+.app-content {
+  display: inline-block;
+  width: 80%;
+  overflow: hidden;
 }
