@@ -1,12 +1,15 @@
 @keyframes pulse {
   0% {
     background-color: #c0e218;
+    box-shadow: unset;
   }
   50% {
     background-color: #f0ffa7;
+    box-shadow: 0 0 20px 0px #c0e218;
   }
   100% {
     background-color: #c0e218;
+    box-shadow: unset;
   }
 }
 

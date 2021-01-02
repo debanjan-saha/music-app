@@ -79,7 +79,7 @@ export class PlaylistDetailsComponent implements OnInit, OnDestroy {
   shuffleSongs() {
     this.songs = this.songs.sort(this.randomSortFunc);
     this.songs = [...this.songs];
-    this.musicAppService.playSong(this.songs[0]);
+    this.musicAppService.playSongs(this.songs.map(song => song.id));
   }
 
   randomSortFunc() {
