@@ -13,7 +13,15 @@ export class MusicAppService {
   private playlists: Playlist[];
   public playListsSubject: BehaviorSubject<Playlist[]>;
   public mediaPlayerSubject: BehaviorSubject<any>;
+
   constructor(private http: HttpClient) {
+    this.initializePlaylists();
+    this.playListsSubject = new BehaviorSubject(this.playlists);
+    this.mediaPlayerSubject = new BehaviorSubject({ id: 1, title: 'Dance Basanti', artist: 'Keysha' });
+    this.getAllSongs().subscribe(noop);
+  }
+
+  private initializePlaylists() {
     this.playlists = [
       { id: uuid.v4(), title: 'Friday Night Chill Hits', lastModifiedDate: new Date(), songs: [1, 2] },
       { id: uuid.v4(), title: 'Workout Hits 2020', lastModifiedDate: new Date(), songs: [3] },
@@ -23,9 +31,6 @@ export class MusicAppService {
     if (playlists !== null) {
       this.playlists = JSON.parse(playlists);
     }
-    this.playListsSubject = new BehaviorSubject(this.playlists);
-    this.mediaPlayerSubject = new BehaviorSubject({ id: 1, title: 'Dance Basanti', artist: 'Keysha' });
-    this.getAllSongs().subscribe(noop);
   }
 
   playSong(song: any) {
@@ -57,7 +62,7 @@ export class MusicAppService {
           return artists.map(artist => {
             return {
               title: artist.name,
-              subtitle: '5.6M'
+              subtitle: `${Math.floor(Math.random()*10)}.${Math.floor(Math.random()*10)}M`
             }
           })
         }),
@@ -87,14 +92,12 @@ export class MusicAppService {
 
   addPlaylist(title: string) {
     this.playlists.splice(0, 0, { id: uuid.v4(), title, songs: [], lastModifiedDate: new Date() });
-    localStorage.setItem('playlists', JSON.stringify(this.playlists));
-    this.playListsSubject.next(this.playlists);
+    this.savePlaylist(this.playlists);
   }
 
   deletePlaylist(id: string) {
     this.playlists = this.playlists.filter(playlist => playlist.id !== id);
-    localStorage.setItem('playlists', JSON.stringify(this.playlists));
-    this.playListsSubject.next(this.playlists);
+    this.savePlaylist(this.playlists);
   }
 
   renamePlaylist(id: string, name: string) {
@@ -105,7 +108,7 @@ export class MusicAppService {
       }
       return playlist;
     });
-    localStorage.setItem('playlists', JSON.stringify(this.playlists));
+    this.savePlaylist(this.playlists);
   }
 
   getSongsByIds(uuids: number[]) {
@@ -122,8 +125,7 @@ export class MusicAppService {
         return false;
       }
       this.playlists[index].songs.push(song.id);
-      localStorage.setItem('playlists', JSON.stringify(this.playlists));
-      this.playListsSubject.next(this.playlists);
+      this.savePlaylist(this.playlists);
       return true;
     } else {
       return false;
@@ -133,12 +135,20 @@ export class MusicAppService {
   removeSongFromPlaylist(playlistId: string, songId: any) {
     const index = this.playlists.findIndex(playlist => playlist.id === playlistId);
     if (index !== -1) {
-      this.playlists[index].songs.splice(index, 1);
-      localStorage.setItem('playlists', JSON.stringify(this.playlists));
+      const songIndex = this.playlists[index].songs.findIndex(id => id === songId);
+      if (songId !== -1) {
+        this.playlists[index].songs.splice(songIndex, 1);
+      }
+      this.savePlaylist(this.playlists);
       return true;
     } else {
       return false;
     }
+  }
+
+  private savePlaylist(playlists: Playlist[]) {
+    localStorage.setItem('playlists', JSON.stringify(playlists));
+    this.playListsSubject.next(this.playlists);
   }
 }
 
