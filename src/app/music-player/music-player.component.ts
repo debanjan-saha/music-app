@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { MusicAppService } from '../songs/music-app.service';
+import { MusicAppService } from '../music-app.service';
 
 @Component({
   selector: 'app-music-player',
@@ -10,6 +11,7 @@ import { MusicAppService } from '../songs/music-app.service';
 export class MusicPlayerComponent implements OnInit {
   song: any;
   isPlaying: boolean;
+  subscription: Subscription;
 
   constructor(
     private musicAppService: MusicAppService
@@ -18,9 +20,15 @@ export class MusicPlayerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.musicAppService.listenForCurrentTrackChanges()
+    this.subscription = this.musicAppService.listenForCurrentTrackChanges()
       .pipe(tap(() => this.isPlaying = true))
       .subscribe(song => this.song = { ...song });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }

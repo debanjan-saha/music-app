@@ -1,7 +1,7 @@
 <div class="sidebar-content floating-panel">
   <div class="user-profile">
     <div class="user-dp">
-      <img class="thumbnail" [src]="user?.picture?.large">
+      <img class="thumbnail" loading="lazy" [src]="user?.picture?.large">
       <div class="online-status"></div>
     </div>
     <div class="user-name">{{ user?.name?.first + ' ' + user?.name?.last }}</div>

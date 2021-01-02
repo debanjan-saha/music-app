@@ -12,6 +12,7 @@
       padding: 20px;
       display: flex;
       align-items: center;
+      user-select: none;
       .logo-wrapper {
         flex: 1;
         display: flex;
@@ -36,6 +37,9 @@
         color: rgb(39, 48, 87);
         cursor: pointer;
         &.active {
+          color: #c0e218;
+        }
+        &:hover:not(.active) {
           color: #c0e218;
         }
       }

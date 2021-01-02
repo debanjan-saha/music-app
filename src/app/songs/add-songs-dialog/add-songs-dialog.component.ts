@@ -2,7 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Playlist } from 'src/app/models/playlist.model';
-import { MusicAppService } from '../music-app.service';
+import { Song } from 'src/app/models/song.model';
+import { MusicAppService } from '../../music-app.service';
 
 @Component({
   selector: 'app-add-songs-dialog',
@@ -11,7 +12,7 @@ import { MusicAppService } from '../music-app.service';
 })
 export class AddSongsDialogComponent implements OnInit {
   playlist: Playlist;
-  songs: any[];
+  songs: Song[];
   searchString: string;
 
   constructor(

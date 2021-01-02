@@ -29,6 +29,12 @@ mat-dialog-container {
     display: inline-block;
     text-decoration: none;
     color: #2e2e2e;
-    font-weight: 300;
+    font-weight: 400;
+    transition: 0.2;
+
+    &:hover {
+      color: #c0e218;
+      transition: 0.2;
+    }
   }
 }

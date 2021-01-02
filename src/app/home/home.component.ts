@@ -1,26 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { MusicAppService } from '../songs/music-app.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { forkJoin, Subscription } from 'rxjs';
+import { MusicAppService } from '../music-app.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   featuredArtists: any[];
   songs: any[];
+
+  subscription: Subscription;
 
   constructor(
     private musicAppService: MusicAppService
   ) { }
 
   ngOnInit(): void {
-    this.musicAppService.getFeaturedArtists().subscribe(artists => {
-      this.featuredArtists = artists;
+    this.subscription = forkJoin([this.musicAppService.getFeaturedArtists(), this.musicAppService.getAllSongs()]).subscribe(response => {
+      this.featuredArtists = response[0];
+      this.songs = response[1];
     });
-    this.musicAppService.getAllSongs().subscribe(songs => {
-      this.songs = songs;
-    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }

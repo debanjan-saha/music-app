@@ -1,12 +1,14 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { MusicAppService } from './music-app.service';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Song } from '../models/song.model';
+import { MusicAppService } from '../music-app.service';
 
 @Component({
   selector: 'app-songs',
   templateUrl: './songs.component.html',
   styleUrls: ['./songs.component.scss']
 })
-export class SongsComponent implements OnInit, OnChanges {
+export class SongsComponent implements OnInit, OnChanges, OnDestroy {
   @Input() height: string = '550px';
   @Input() displayCount: number = 10;
   @Input() showCount = true;
@@ -16,12 +18,13 @@ export class SongsComponent implements OnInit, OnChanges {
   @Input() showDeleteIcon = false;
   @Input() showSearch = true;
   @Input() showPlayIcon = true;
-  @Input() songs: any[];
+  @Input() songs: Song[];
   @Output() addClicked: EventEmitter<any>;
   @Output() deleteClicked: EventEmitter<any>;
   searchString: string = '';
-
   filteredSongs: any[];
+  subscription: Subscription;
+
   constructor(private musicAppService: MusicAppService) {
     this.addClicked = new EventEmitter();
     this.deleteClicked = new EventEmitter();
@@ -29,7 +32,7 @@ export class SongsComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     if (!this.songs) {
-      this.musicAppService.getAllSongs().subscribe(songs => {
+      this.subscription = this.musicAppService.getAllSongs().subscribe(songs => {
         this.songs = songs;
         this.filteredSongs = [...this.songs];
       });
@@ -45,6 +48,12 @@ export class SongsComponent implements OnInit, OnChanges {
     if (changes.songs && !changes.songs.firstChange) {
       this.filteredSongs = changes.songs.currentValue;
       this.onSearchQueryChanged(this.searchString);
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 

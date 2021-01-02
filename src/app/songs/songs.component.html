@@ -11,17 +11,17 @@
   <cdk-virtual-scroll-viewport [itemSize]="displayCount" [ngStyle]="{ height: height }" class="songs-viewport">
     <div class="song-tile" [ngClass]="{'edit': isEditMode}"
       *cdkVirtualFor="let song of filteredSongs; let index = index;">
-      <img class="thumbnail" src="https://picsum.photos/70?random={{index}}">
+      <img class="thumbnail" loading="lazy" src="https://picsum.photos/70?random={{index}}">
       <div class="song-details">
         <div class="title">{{ song.title }}</div>
         <div class="artist">{{ song.title.slice(0, 5) }}</div>
       </div>
       <div class="action-buttons">
+        <i class="material-icons" *ngIf="showPlayIcon" matTooltip="Play" (click)="playSong(song)">play_arrow</i>
         <i id="icon-add-to-playlist" class="material-icons" matTooltip="Add to Playlist" (click)="addClicked.emit(song)"
           *ngIf="showAddIcon">add_circle</i>
         <i id="icon-add-to-playlist" class="material-icons" matTooltip="Delete from Playlist"
           (click)="deleteClicked.emit(song)" *ngIf="showDeleteIcon">clear</i>
-        <i class="material-icons" *ngIf="showPlayIcon" matTooltip="Play" (click)="playSong(song)">play_arrow</i>
         <!-- <i class="material-icons" *ngIf="isPlaying" (click)="isPlaying = !isPlaying">pause</i> -->
       </div>
     </div>

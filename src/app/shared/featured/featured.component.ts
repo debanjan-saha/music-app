@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FeaturedItem } from 'src/app/models/featured-item.model';
 
 @Component({
   selector: 'app-featured',
@@ -14,11 +15,4 @@ export class FeaturedComponent implements OnInit {
   ngOnInit(): void {
   }
 
-}
-
-export interface FeaturedItem {
-  title: string;
-  subtitle?: string;
-  thumbnail?: string;
-  metadata?: any;
 }

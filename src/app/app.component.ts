@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MusicAppService } from './songs/music-app.service';
+import { User } from './models/user.model';
+import { MusicAppService } from './music-app.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,11 @@ import { MusicAppService } from './songs/music-app.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  user: Observable<any>;
+  user: User;
 
   constructor(private musicAppService: MusicAppService) { }
 
   ngOnInit() {
-    this.musicAppService.getUserDetails().subscribe((user: any) => this.user = user);
+    this.musicAppService.getUserDetails().subscribe((user: User) => this.user = user);
   }
 }

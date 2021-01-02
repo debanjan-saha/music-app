@@ -13,6 +13,13 @@
       height: 170px;
       margin: 0 10px;
       border-radius: 20px;
+      border: 2px solid transparent;
+      transition: 0.2s;
+      &:hover {
+        border: 2px solid#c0e218;
+        transition: 0.2s;
+        transform: scale(1.06);
+      }
       .item-thumbnail {
         border-top-right-radius: 20px;
         border-top-left-radius: 20px;

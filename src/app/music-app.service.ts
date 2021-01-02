@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, noop, Observable, of, Subject } from 'rxjs';
 import { map, retry, shareReplay, tap } from 'rxjs/operators';
-import { Playlist } from '../models/playlist.model';
+import { Playlist } from './models/playlist.model';
 import * as uuid from 'uuid';
+import { Song } from './models/song.model';
 
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
@@ -36,10 +37,10 @@ export class MusicAppService {
   }
 
 
-  getAllSongs(): Observable<any> {
+  getAllSongs(): Observable<Song[]> {
     const songs = localStorage.getItem('songs');
     if (songs === null) {
-      return this.http.get<any[]>(`${BASE_URL}/photos`).pipe(
+      return this.http.get<Song[]>(`${BASE_URL}/photos`).pipe(
         tap(songs => localStorage.setItem('songs', JSON.stringify(songs))),
         shareReplay()
       );

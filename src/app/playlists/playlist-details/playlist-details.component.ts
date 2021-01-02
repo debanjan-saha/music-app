@@ -1,22 +1,23 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { noop } from 'rxjs';
+import { noop, Subscription } from 'rxjs';
 import { Playlist } from 'src/app/models/playlist.model';
 import { AddSongsDialogComponent } from 'src/app/songs/add-songs-dialog/add-songs-dialog.component';
-import { MusicAppService } from 'src/app/songs/music-app.service';
+import { MusicAppService } from 'src/app/music-app.service';
 
 @Component({
   selector: 'app-playlist-details',
   templateUrl: './playlist-details.component.html',
   styleUrls: ['./playlist-details.component.scss']
 })
-export class PlaylistDetailsComponent implements OnInit {
+export class PlaylistDetailsComponent implements OnInit, OnDestroy {
   @Input() height: string = '550px';
   @Input() displayCount: number = 10;
   playlist: Playlist;
   songs: any[];
+  subscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,8 +32,14 @@ export class PlaylistDetailsComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
   loadSongsForPlaylist(playlistId: string) {
-    this.musicAppService.getAllPlaylists().subscribe(playlists => {
+    this.subscription = this.musicAppService.getAllPlaylists().subscribe(playlists => {
       if (!playlistId) {
         return;
       }
@@ -59,7 +66,7 @@ export class PlaylistDetailsComponent implements OnInit {
       });
   }
 
-  removeSongFromPlaylist(songId: any) {
+  removeSongFromPlaylist(songId: number) {
     const isSuccess = this.musicAppService.removeSongFromPlaylist(this.playlist.id, songId);
     this.loadSongsForPlaylist(this.playlist.id);
     if (isSuccess) {
